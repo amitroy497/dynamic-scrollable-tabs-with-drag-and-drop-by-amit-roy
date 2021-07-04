@@ -5,6 +5,7 @@
   margin: 0 10px;
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 .hoverX {
   position: absolute;

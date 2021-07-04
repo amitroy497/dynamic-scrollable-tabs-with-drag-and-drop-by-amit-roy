@@ -40,3 +40,9 @@
   content: '>';
   font-size: 25px;
 }
+.dropContainer {
+  border: 1px solid #000;
+  margin: 20px auto;
+  width: 88%;
+  height: 200px;
+}

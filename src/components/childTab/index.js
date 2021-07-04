@@ -2,7 +2,16 @@ import React, { forwardRef } from 'react'
 import './index.css'
 
 const ChildTab = (
-  { onMouseEnter, onMouseLeave, tab, isHovering, item, cName },
+  {
+    onMouseEnter,
+    onMouseLeave,
+    isHovering,
+    item,
+    cName,
+    onDragStart,
+    draggable,
+    id,
+  },
   ref
 ) => {
   return (
@@ -11,10 +20,13 @@ const ChildTab = (
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       ref={ref}
+      onDragStart={onDragStart}
+      draggable={draggable}
+      id={id}
     >
-      Tab{tab}{' '}
+      Tab{id}{' '}
       {isHovering && (
-        <button className='hoverX' onClick={() => item(tab)}>
+        <button className='hoverX' onClick={() => item(id)}>
           x
         </button>
       )}

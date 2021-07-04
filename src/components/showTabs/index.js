@@ -9,6 +9,7 @@ const ShowTabs = ({ count }) => {
   const [leftFlag, setLeftFlag] = useState()
   const [rightFlag, setRightFlag] = useState()
   const [tabLength, setTabLength] = useState()
+  const [dragIndex, setDragIndex] = useState()
   const dynamicRef = useRef('')
   const dynamicTabMenuRef = useRef('')
   const dynamicTabRef = useRef('')
@@ -90,42 +91,74 @@ const ShowTabs = ({ count }) => {
     let tabLen = document.querySelectorAll('.tab').length
     setTabLength(tabLen)
   }, [tabs])
+
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData('text/plain', e.target.id)
+    e.currentTarget.style.backgroundColor = 'yellow'
+  }
+
+  const handleDragOver = (e) => {
+    e.preventDefault()
+  }
+
+  const handleDrop = (e) => {
+    const data = e.dataTransfer.getData('text')
+    setDragIndex(data)
+    e.dataTransfer.clearData()
+  }
   return (
-    <article className='mainMenuWrapper'>
-      <section className='tabMenuSection' ref={dynamicRef}>
-        <div className='arrowWrapper'>
-          {leftFlag ? (
-            <button className='leftArrow' onClick={() => scroll(-20)}></button>
-          ) : null}
-        </div>
-        <nav
-          className='tabMenu'
-          ref={dynamicTabMenuRef}
-          onScroll={handleScroll}
-        >
-          {tabs.map((index) => (
-            <ChildTab
-              key={index}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
-              tab={index}
-              isHovering={isHovered[index]}
-              item={deleteData}
-              cName='tab'
-              ref={dynamicTabRef}
-            />
-          ))}
-        </nav>
-        <div className='arrowWrapper'>
-          {rightFlag ? (
-            <button className='rightArrow' onClick={() => scroll(20)}></button>
-          ) : null}
-        </div>
-      </section>
-      <button className='addButton' onClick={addTabs}>
-        +
-      </button>
-    </article>
+    <React.Fragment>
+      <article className='mainMenuWrapper'>
+        <section className='tabMenuSection' ref={dynamicRef}>
+          <div className='arrowWrapper'>
+            {leftFlag ? (
+              <button
+                className='leftArrow'
+                onClick={() => scroll(-20)}
+              ></button>
+            ) : null}
+          </div>
+          <nav
+            className='tabMenu'
+            ref={dynamicTabMenuRef}
+            onScroll={handleScroll}
+          >
+            {tabs.map((index) => (
+              <ChildTab
+                key={index}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={() => handleMouseLeave(index)}
+                isHovering={isHovered[index]}
+                item={deleteData}
+                cName='tab'
+                ref={dynamicTabRef}
+                draggable='true'
+                id={index}
+                onDragStart={(e) => handleDragStart(e)}
+              />
+            ))}
+          </nav>
+          <div className='arrowWrapper'>
+            {rightFlag ? (
+              <button
+                className='rightArrow'
+                onClick={() => scroll(20)}
+              ></button>
+            ) : null}
+          </div>
+        </section>
+        <button className='addButton' onClick={addTabs}>
+          +
+        </button>
+      </article>
+      <article
+        className='dropContainer'
+        onDragOver={(e) => handleDragOver(e)}
+        onDrop={(e) => handleDrop(e)}
+      >
+        {dragIndex ? <section>Tab {dragIndex} contents</section> : null}
+      </article>
+    </React.Fragment>
   )
 }
 

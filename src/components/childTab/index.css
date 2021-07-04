@@ -1,0 +1,17 @@
+.tab {
+  width: 100px;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 15px 10px;
+  margin: 0 10px;
+  position: relative;
+  display: inline-block;
+}
+.hoverX {
+  position: absolute;
+  right: 0;
+  border: 0;
+  background: transparent;
+  top: 0;
+  font-size: 18px;
+  cursor: pointer;
+}

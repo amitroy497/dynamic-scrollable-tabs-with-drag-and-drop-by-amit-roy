@@ -1,0 +1,42 @@
+.mainMenuWrapper {
+  margin: 0 auto;
+  width: 95%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.addButton {
+  width: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 25px;
+}
+.tabMenuSection {
+  width: calc(100% - 40px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.arrowWrapper {
+  width: 32px;
+  float: left;
+}
+.arrowWrapper button {
+  cursor: pointer;
+}
+.tabMenu {
+  width: calc(100% - 103px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0 15px;
+  float: left;
+  white-space: nowrap;
+}
+.leftArrow::before {
+  content: '<';
+  font-size: 25px;
+}
+.rightArrow::before {
+  content: '>';
+  font-size: 25px;
+}

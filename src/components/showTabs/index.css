@@ -28,9 +28,10 @@
   width: calc(100% - 103px);
   overflow-x: auto;
   overflow-y: hidden;
-  margin: 0 15px;
+  margin: 15px 15px 0 15px;
   float: left;
   white-space: nowrap;
+  scrollbar-width: none;
 }
 .leftArrow::before {
   content: '<';
@@ -45,4 +46,13 @@
   margin: 20px auto;
   width: 88%;
   height: 200px;
+}
+.dropSection {
+  font-size: 25px;
+  text-align: left;
+  margin: 20px auto;
+  width: 90%;
+}
+.tabMenu::-webkit-scrollbar {
+  width: 0;
 }

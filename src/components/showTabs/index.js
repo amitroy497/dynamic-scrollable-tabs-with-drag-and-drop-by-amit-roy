@@ -9,7 +9,8 @@ const ShowTabs = ({ count }) => {
   const [leftFlag, setLeftFlag] = useState()
   const [rightFlag, setRightFlag] = useState()
   const [tabLength, setTabLength] = useState()
-  const [dragIndex, setDragIndex] = useState()
+  const [dragIndex, setDragIndex] = useState(1)
+  const [prevActive, setPrevActive] = useState(1)
   const dynamicRef = useRef('')
   const dynamicTabMenuRef = useRef('')
   const dynamicTabRef = useRef('')
@@ -52,6 +53,12 @@ const ShowTabs = ({ count }) => {
   }
 
   const addTabs = () => {
+    console.log(prevActive)
+    if (prevActive) {
+      document.getElementById(prevActive).style.borderBottom =
+        '4px solid #2ca2ff'
+    }
+
     let presentCount = tabs.length
     let newCount = presentCount + count
     let i
@@ -78,6 +85,9 @@ const ShowTabs = ({ count }) => {
   }
 
   const deleteData = (val) => {
+    if (val === parseInt(prevActive)) {
+      setPrevActive(null)
+    }
     if (tabLength > 1) {
       let arr = [...tabs]
       const index = arr.indexOf(val)
@@ -93,8 +103,15 @@ const ShowTabs = ({ count }) => {
   }, [tabs])
 
   const handleDragStart = (e) => {
+    if (prevActive) {
+      document.getElementById(prevActive).style.border = 'none'
+      document.getElementById(prevActive).style.color = 'gray'
+    }
+
     e.dataTransfer.setData('text/plain', e.target.id)
-    e.currentTarget.style.backgroundColor = 'yellow'
+    e.currentTarget.style.borderBottom = '4px solid #2ca2ff'
+    e.currentTarget.style.color = '#000'
+    setPrevActive(e.target.id)
   }
 
   const handleDragOver = (e) => {
@@ -156,7 +173,7 @@ const ShowTabs = ({ count }) => {
         onDragOver={(e) => handleDragOver(e)}
         onDrop={(e) => handleDrop(e)}
       >
-        {dragIndex ? <section>Tab {dragIndex} contents</section> : null}
+        <section className='dropSection'>Tab {dragIndex} contents</section>
       </article>
     </React.Fragment>
   )

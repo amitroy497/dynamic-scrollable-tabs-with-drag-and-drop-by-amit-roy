@@ -1,11 +1,11 @@
 .tab {
   width: 100px;
-  border: 1px solid rgb(0, 0, 0);
   padding: 15px 10px;
   margin: 0 10px;
   position: relative;
   display: inline-block;
   cursor: pointer;
+  color: gray;
 }
 .hoverX {
   position: absolute;
@@ -15,4 +15,7 @@
   top: 0;
   font-size: 18px;
   cursor: pointer;
+}
+.tab:first-child {
+  border-bottom: 4px solid #2ca2ff;
 }

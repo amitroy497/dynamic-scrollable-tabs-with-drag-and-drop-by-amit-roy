@@ -132,6 +132,7 @@ const ShowTabs = ({ count }) => {
               <button
                 className='leftArrow'
                 onClick={() => scroll(-20)}
+                title='Left'
               ></button>
             ) : null}
           </div>
@@ -160,11 +161,12 @@ const ShowTabs = ({ count }) => {
               <button
                 className='rightArrow'
                 onClick={() => scroll(20)}
+                title='Right'
               ></button>
             ) : null}
           </div>
         </section>
-        <button className='addButton' onClick={addTabs}>
+        <button className='addButton' onClick={addTabs} title='Add Tabs'>
           +
         </button>
       </article>
@@ -172,6 +174,7 @@ const ShowTabs = ({ count }) => {
         className='dropContainer'
         onDragOver={(e) => handleDragOver(e)}
         onDrop={(e) => handleDrop(e)}
+        title='Drop Tab Here'
       >
         <section className='dropSection'>Tab {dragIndex} contents</section>
       </article>

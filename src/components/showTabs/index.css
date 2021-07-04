@@ -10,6 +10,8 @@
   margin-left: 10px;
   cursor: pointer;
   font-size: 25px;
+  border: 0;
+  background: transparent;
 }
 .tabMenuSection {
   width: calc(100% - 40px);
@@ -23,6 +25,8 @@
 }
 .arrowWrapper button {
   cursor: pointer;
+  background: transparent;
+  border: 0;
 }
 .tabMenu {
   width: calc(100% - 103px);

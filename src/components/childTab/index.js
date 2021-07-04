@@ -23,10 +23,11 @@ const ChildTab = (
       onDragStart={onDragStart}
       draggable={draggable}
       id={id}
+      title='Drag Tab'
     >
       Tab{id}{' '}
       {isHovering && (
-        <button className='hoverX' onClick={() => item(id)}>
+        <button className='hoverX' onClick={() => item(id)} title='Delete Tab'>
           x
         </button>
       )}
